@@ -18,3 +18,20 @@ Content-Type: application/json
   "email": "meghunter01@example.com",
   "password": "password"
 }
+
+### Fossil Areas Index
+GET http://localhost:3000/fossil_areas.json
+
+### Fossil Areas Create
+POST http://localhost:3000/fossil_areas.json
+Content-Type: application/json
+
+{
+  "state_name": "TEST",
+  "area_name": "TEST",
+  "geologic_formation": "TEST",
+  "hyperlink": "TEST",
+  "address": "TEST",
+  "era": "TEST",
+  "description": "TEST"
+}
