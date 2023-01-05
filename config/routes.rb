@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
+  resources :users
+  resources :fossil_areas
+  resources :shark_teeths
+  resources :join_tables
+
   ###SESSIONS
   post "/sessions" => "sessions#create"
-
-  ###USERS
-  post "/users" => "users#create"
-
-  ###FOSSIL AREAS
-  get "/fossil_areas" => "fossil_areas#index"
-
-  post "/fossil_areas" => "fossil_areas#create"
 end

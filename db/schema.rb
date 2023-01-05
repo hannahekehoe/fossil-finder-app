@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_03_192755) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_04_195609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_192755) do
   create_table "join_tables", force: :cascade do |t|
     t.integer "user_id"
     t.integer "fossil_area_id"
-    t.integer "shark_tooth_id"
+    t.integer "shark_teeth_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_192755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
+    t.boolean "admin", default: false
   end
 
 end

@@ -1,30 +1,58 @@
+@jwt_admin = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NzI5NDcwNDB9.DHBoLClkOr38PRvU8IhqPag_fn320IMLdgHZpq7GjBE
+
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NzI5NDM0Njd9.8IuNh2prvoHhk7VGbCgqHypRSW4y6aaHJeQNcuUNvEM
+
+### User ACTIONS
+
 ### Users create (signup)
 POST http://localhost:3000/users.json
 Content-Type: application/json
 
 {
-  "username": "MegHunter01",
-  "email": "meghunter01@example.com",
-  "image_url": "https://i.etsystatic.com/5592462/r/il/5ac3c7/575537031/il_794xN.575537031_11h1.jpg",
+  "username": "Hannah",
+  "email": "Hannah@example.com",
+  "image_url": "https://www.fossilera.com/pi/3693/1024x1000%3E/1-fossil-otodus-shark-teeth-khouribga-morocco.jpg",
   "password": "password",
   "password_confirmation": "password"
 }
+
+### Users Index
+GET http://localhost:3000/users.json
+
+### Users Show
+GET http://localhost:3000/users/1.json
+
+### Users Update
+PATCH http://localhost:3000/users/4.json
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+  "username": "HANNAH"
+}
+
+### Users Destroy
+DELETE http://localhost:3000/users/5.json
+Authorization: Bearer {{jwt_admin}}
 
 ### Sessions create (login)
 POST http://localhost:3000/sessions.json
 Content-Type: application/json
 
 {
-  "email": "meghunter01@example.com",
+  "email": "Hannah@example.com",
   "password": "password"
 }
 
-### Fossil Areas Index
+### Fossil Area ACTIONS
+
+### Fossil Area Index
 GET http://localhost:3000/fossil_areas.json
 
-### Fossil Areas Create
+### Fossil Area Create
 POST http://localhost:3000/fossil_areas.json
 Content-Type: application/json
+Authorization: Bearer {{jwt_admin}}
 
 {
   "state_name": "TEST",
@@ -35,3 +63,81 @@ Content-Type: application/json
   "era": "TEST",
   "description": "TEST"
 }
+
+### Fossil Area Show
+GET http://localhost:3000/fossil_areas/8.json
+
+### Fossil Area Update
+PATCH http://localhost:3000/fossil_areas/8.json
+Content-Type: application/json
+Authorization: Bearer {{jwt_admin}}
+
+{
+  "state_name": "Florida",
+  "area_name": "Amelia Island",
+  "geologic_formation": "Unconsolidated Pleistocene layers of sand and gravel",
+  "hyperlink": "https://www.floridastateparks.org/fortclinch",
+  "address": "2601 Atlantic Ave., Fernandina Beach, FL 32034",
+  "era": "Middle Miocene to Pleistocene",
+  "description": "One of the few reliable places to find fossil shark teeth on the Eastern coast of Florida, teeth can be found all around the beaches of Amelia Island. There are, however, better areas than others to find them. Shark teeth wash down from the St. Marys river where currents bring them onto the beaches. This means the northern part of Amelia Island, near Fort Clinch State Park, is better for shark teeth. The St Marys river inlet is also an important entrance channel for submarines at Kings Bay Naval Submarine Base, so the inlet is kept deep by regular dredging. The sand and shark teeth removed from the dredging process is directed to the beach next to Fort Clinch and is usually the best area for shark tooth hunting. The St. Marys inlet at Fort Clinch State Park is just 2 miles north of the Main Beach Park. Free parking is available at Main Beach Park with a 2 mile walk north to Fort Clinch. A faster way is to pay a small entrance fee and drive to the northern end of Ft. Clinch State Park. Besides inlet dredging every few years, every 10 years there will be a beach replenishment program that pumps shark teeth filled sand onto the beaches further south. The areas where the renourishment is occurring or has occured during the past year or so are good places to look for shark teeth."
+}
+
+### Fossil Area Destroy
+DELETE http://localhost:3000/fossil_areas/8.json
+Authorization: Bearer {{jwt_admin}}
+
+### SHARK TEETH ACTIONS:
+
+### Shark Teeth Index
+GET http://localhost:3000/shark_teeths.json
+
+### Shark Teeth Create
+POST http://localhost:3000/shark_teeths.json
+Content-Type: application/json
+Authorization: Bearer {{jwt_admin}}
+
+{
+  "common_name": "TEST",
+  "sci_name": "TEST",
+  "image_url": "TEST",
+  "era": "TEST",
+  "location": "TEST",
+  "tooth_size": "TEST",
+  "extinction": "TEST"
+}
+
+### Shark Teeth Show
+GET http://localhost:3000/shark_teeths/1.json
+
+### Shark Teeth Update
+PATCH http://localhost:3000/shark_teeths/6.json
+Content-Type: application/json
+Authorization: Bearer {{jwt_admin}}
+
+{
+  "common_name": "Great White Shark",
+  "sci_name": "Carcharodon carcharias",
+  "image_url": "https://www.fossilguy.com/gallery/vert/fish-shark/carcharodon/c_carcharias_id.jpg",
+  "era": "Miocene to recent era",
+  "location": "Global. Modern species live everywhere except Arctic waters",
+  "tooth_size": "Up to 3 in.",
+  "extinction": "No. Listed as vulnerable by the IUCN and protected in some areas."
+}
+
+### Shark Teeth Destroy
+DELETE http://localhost:3000/shark_teeths/6.json
+Authorization: Bearer {{jwt_admin}}
+
+### Join table Create
+POST http://localhost:3000/join_tables.json
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+  "fossil_area_id": 4,
+  "shark_teeth_id": 1
+}
+
+### Join table Index
+GET http://localhost:3000/join_tables.json
+Authorization: Bearer {{jwt}}
